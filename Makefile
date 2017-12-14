@@ -6,7 +6,7 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2017/12/14 11:04:01 by alerandy         ###   ########.fr        #
+#    Updated: 2017/12/14 16:33:33 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,14 @@ libft :
 	@$(MAKE) -C libft/
 
 success : minilibx
-	@printf "\033[9A\r\033[K""\033[32mLibrairie mlx compilé avec succès.\033[0m\n"
+#	@printf "\033[9A\r\033[K""\033[32mLibrairie mlx compilé avec succès.\033[0m\n"
 
 minilibx :
 	@$(MAKE) -C minilibx_macos/
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) -Iminilibx_macos -o $@ -c $<
+	@$(CC) -Iminilibx_macos -Iincludes -Ilibft/includes -o $@ -c $<
 
 clean :
 	@rm -f $(OBJ_PATH)
@@ -55,6 +55,7 @@ fclean :
 	@rm -f minilibx_macos/libmlx.a
 
 re : fclean $(NAME)
+	@printf "\033[9A\r\033[K""\033[32mLibrairie mlx compilé avec succès.\033[0m\n"
 
 norm :
 	@norminette srcs/ includes/
