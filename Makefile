@@ -38,7 +38,7 @@ minilibx :
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) -o $@ -c $<
+	@$(CC) -Iminilibx_macos -o $@ -c $<
 
 clean :
 	@rm -f $(OBJ_PATH)
