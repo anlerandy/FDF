@@ -6,7 +6,7 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2017/12/12 16:36:56 by alerandy         ###   ########.fr        #
+#    Updated: 2017/12/14 11:04:01 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,14 @@ OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 all : $(NAME)
 
-$(NAME) : libft minilibx $(OBJ)
+$(NAME) : libft success $(OBJ)
 	@$(CC) $(LIB) $(FRAME) $(OBJ) -o $(NAME)
 
 libft :
 	@$(MAKE) -C libft/
+
+success : minilibx
+	@printf "\033[9A\r\033[K""\033[32mLibrairie mlx compilé avec succès.\033[0m\n"
 
 minilibx :
 	@$(MAKE) -C minilibx_macos/
@@ -39,14 +42,16 @@ $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 
 clean :
 	@rm -f $(OBJ_PATH)
-	@$(MAKE) -C libft/ clean
 	@$(MAKE) -C minilibx_macos/ clean
+	@printf "\033[2A\r\033[K""\033[1;30mLib mlx détruite.\033[0m\n"
+	@$(MAKE) -C libft/ clean
 
 fclean :
 	@rm -f $(NAME)
 	@rm -rf $(OBJ_PATH)
-	@$(MAKE) -C libft/ fclean
 	@$(MAKE) -C minilibx_macos/ clean
+	@printf "\033[2A\r\033[K""\033[1;30mLib mlx détruite.\033[0m\n"
+	@$(MAKE) -C libft/ fclean
 	@rm -f minilibx_macos/libmlx.a
 
 re : fclean $(NAME)
@@ -54,4 +59,4 @@ re : fclean $(NAME)
 norm :
 	@norminette srcs/ includes/
 
-.PHONY : fclean re norm minilibx libft all
+.PHONY : fclean re norm success minilibx libft all
