@@ -6,14 +6,14 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2017/12/18 14:59:58 by alerandy         ###   ########.fr        #
+#    Updated: 2017/12/18 22:11:32 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 SRC_PATH = srcs/
 OBJ_PATH = objects/
-SRC_NAME = wireframe.c coord_crafter.c main.c
+SRC_NAME = wireframe.c coord_crafter.c ft_tabdel.c main.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 CC = clang $(FLAG)
 FLAG = -Wall -Werror -Wextra

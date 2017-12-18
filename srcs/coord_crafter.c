@@ -6,11 +6,39 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/18 16:17:09 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/18 22:07:56 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int		**coord_table(t_list **save)
+{
+	int			**tab;
+	t_list		*tmp;
+	int			y;
+	int			len;
+	int			i;
+
+	i = 0;
+	tmp = *save;
+	tab = NULL;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	y = ((t_cortab *)(tmp->content))->y;
+	len = ((t_cortab *)(tmp->content))->len;
+	tab = ft_memalloc(y);
+	tmp = *save;
+	while (i < y)
+	{
+		tab[i] = ft_memalloc(len * sizeof(int));
+		tab[i] = ft_memcpy(tab[i], ((t_cortab *)(tmp->content))->tab,
+				len * sizeof(int));
+		i++;
+		tmp = tmp->next;
+	}
+	return (tab);
+}
 
 static int		save_struct(t_list **save, t_cortab *coord)
 {
@@ -53,7 +81,7 @@ static int		to_struct(t_list **save, char **tab)
 	return (save_struct(save, &coord));
 }
 
-static int		coord_crafter(int fd)
+static int		**coord_crafter(int fd)
 {
 	char			*line;
 	int				err;
@@ -69,10 +97,15 @@ static int		coord_crafter(int fd)
 		(err == 1 ? err = to_struct(&save, tab) : err);
 		(err == 1 ? ft_memdel((void *)tab) : ft_strdel(&line));
 	}
-	return (err);
+	if (err == 1)
+		return (coord_table(&save));
+	else
+		ft_putendl("La lecture du tableau a échoué.\nErreur 4");
+	ft_lstdel(&(save), &ft_tabdel);
+	return (NULL);
 }
 
-int				open_map(char *arg)
+int				**open_map(char *arg)
 {
 	int		fd;
 
@@ -89,7 +122,7 @@ int				open_map(char *arg)
 		else
 			ft_putendl("Échec création de matrice depuis l'entrée standard.");
 		ft_putendl("Erreur 3");
-		return (-1);
+		return (NULL);
 	}
 	return (coord_crafter(fd));
 }

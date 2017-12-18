@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/18 16:17:25 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/18 22:12:48 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			main(int ac, char **av)
 	end.z = 0;
 	if (!(mlx = mlx_init()))
 		return (-1);
-	if (!(win = mlx_new_window(mlx, 500, 500, "WireCraft 0.02")))
+	if (!(win = mlx_new_window(mlx, 500, 500, "WireCraft 0.03")))
 		return (-1);
 	draw_line(mlx, win, start, end);
 	mlx_key_hook(win, ft_exit, 0);

@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/18 22:10:48 by alerandy         ###   ########.fr       */
+/*   Created: 2017/12/18 22:04:04 by alerandy          #+#    #+#             */
+/*   Updated: 2017/12/18 22:10:28 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include <stdlib.h>
 
-# include "get_next_line.h"
-
-typedef struct	s_coor
+void	ft_tabdel(void *tab, size_t len)
 {
-	float		x;
-	float		y;
-	float		z;
-}				t_coor;
-
-typedef struct	s_cortab
-{
-	int			*tab;
-	int			y;
-	int			len;
-}				t_cortab;
-
-int				draw_line(void *mlx, void *win, t_coor start, t_coor end);
-int				**open_map(char *arg);
-void			ft_tabdel(void *tab, size_t len);
-
-#endif
+	if (tab)
+		free(tab);
+	tab = NULL;
+	if (len)
+		len = 0;
+}
