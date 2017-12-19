@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/19 18:08:31 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:25:30 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ static int		coord_crafter(int fd, t_map **map)
 		(tab != NULL ? err : (err = -1));
 		(err == 1 ? err = to_struct(&save, tab) : err);
 		(err == 1 ? ft_memdel((void *)tab) : ft_strdel(&line));
-		(err == -1 ? ft_putendl("Erreur 5") : err);
 	}
 	close(fd);
 	if (err == 1 || (err == 0 && save))

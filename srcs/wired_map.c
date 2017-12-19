@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 12:37:16 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/19 16:15:16 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:26:42 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static t_coor	ft_vector(int z, int x, int y)
 {
 	t_coor		point;
 
-	point.x = (y + x) * 200;
-	point.y = ((x + y) * 100) - z;
+	point.x = (y + x) * 10;
+	point.y = ((x + y) * 5) - z;
 	return (point);
 }
 
