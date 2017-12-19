@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/18 22:10:48 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/19 12:59:10 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef struct	s_coor
 	float		z;
 }				t_coor;
 
+typedef struct	s_map
+{
+	int			**tab;
+	int			i;
+	int			j;
+}				t_map;
+
 typedef struct	s_cortab
 {
 	int			*tab;
@@ -30,7 +37,8 @@ typedef struct	s_cortab
 }				t_cortab;
 
 int				draw_line(void *mlx, void *win, t_coor start, t_coor end);
-int				**open_map(char *arg);
+t_map			open_map(char *arg);
 void			ft_tabdel(void *tab, size_t len);
+int				wiremap(void *mlx, void *win, t_map *map);
 
 #endif
