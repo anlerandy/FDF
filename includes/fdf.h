@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/19 12:59:10 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/19 17:56:12 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_cortab
 }				t_cortab;
 
 int				draw_line(void *mlx, void *win, t_coor start, t_coor end);
-t_map			open_map(char *arg);
+int				open_map(char *arg, t_map **map);
 void			ft_tabdel(void *tab, size_t len);
 int				wiremap(void *mlx, void *win, t_map *map);
 

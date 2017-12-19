@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/19 16:29:42 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:08:31 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int		save_struct(t_list **save, t_cortab **coord)
 	if (!(*save))
 	{
 		ft_putendl("...");
-		*save = ft_lstnew(*coord, sizeof(t_cortab));
+		*save = ft_lstnew(*coord, sizeof(t_cortab) + (sizeof(int) * (*coord)->len));
 		ft_putendl("Malloqué.");
 	}
 	else
@@ -75,7 +75,8 @@ static int		to_struct(t_list **save, char **tab)
 	int				len;
 	t_cortab		*coord;
 
-	coord = ft_memalloc(sizeof(t_cortab));
+	if (!(coord = ft_memalloc(sizeof(t_cortab))))
+		return (-1);
 	i = 0;
 	len = 0;
 	coord->y = 0;
@@ -95,7 +96,7 @@ static int		to_struct(t_list **save, char **tab)
 	return (save_struct(save, &coord));
 }
 
-static int		coord_crafter(int fd, t_map *map)
+static int		coord_crafter(int fd, t_map **map)
 {
 	char			*line;
 	int				err;
@@ -104,30 +105,31 @@ static int		coord_crafter(int fd, t_map *map)
 
 	line = NULL;
 	tab = NULL;
+	save = NULL;
 	while ((err = get_next_line(fd, &line)) == 1)
 	{
 		tab = ft_strsplit(line, ' ');
 		(tab != NULL ? err : (err = -1));
 		(err == 1 ? err = to_struct(&save, tab) : err);
 		(err == 1 ? ft_memdel((void *)tab) : ft_strdel(&line));
-		(err == -1 || err == 0 ? ft_putendl("Erreur 5") : err);
+		(err == -1 ? ft_putendl("Erreur 5") : err);
 	}
+	close(fd);
 	if (err == 1 || (err == 0 && save))
-		return (coord_table(&save, &map));
+		return (coord_table(&save, map));
 	else
 		ft_putendl("La lecture du tableau a échoué.\nErreur 4");
-	if (save)
-		ft_lstdel(&save, &ft_tabdel);
+//	if (save)
+//		ft_lstdel(&save, &ft_tabdel);
 	return (0);
 }
 
-t_map			open_map(char *arg)
+int				open_map(char *arg, t_map **map)
 {
 	int		fd;
-	t_map	*map;
 
 	fd = 0;
-	map = ft_memalloc(sizeof(t_map));
+	*map = ft_memalloc(sizeof(t_map));
 	if (arg)
 		fd = open(arg, O_RDONLY);
 	if (fd < 0)
@@ -143,6 +145,7 @@ t_map			open_map(char *arg)
 		exit(0);
 	}
 	coord_crafter(fd, map);
+	ft_putnbr((*map)->tab[2][3]);
 	ft_putendl("Envoi des coordonnées...");
-	return (*map);
+	return (1);
 }
