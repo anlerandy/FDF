@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/21 13:05:21 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/21 17:26:31 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			main(int ac, char **av)
 	coord_crafter(fd, &map);
 	if (!(mlx = mlx_init()))
 		return (-1);
-	if (!(win = mlx_new_window(mlx, 1100, 1100, "WireCraft 0.03.3")))
+	if (!(win = mlx_new_window(mlx, 1100, 1100, "WireCraft 0.03.5")))
 		return (-1);
 	wiremap(mlx, win, map);
 	mlx_key_hook(win, ft_exit, 0);
