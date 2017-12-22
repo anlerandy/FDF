@@ -6,17 +6,18 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2017/12/19 12:59:23 by alerandy         ###   ########.fr        #
+#    Updated: 2017/12/22 06:32:19 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 SRC_PATH = srcs/
 OBJ_PATH = objects/
-SRC_NAME = wireframe.c coord_crafter.c ft_tabdel.c wired_map.c main.c
+SRC_NAME = wireframe.c coord_crafter.c ft_tabdel.c wired_map.c ft_memclr.c \
+		   main.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 CC = clang $(FLAG)
-FLAG = -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra -g
 FRAME = -framework OpenGL -framework AppKit
 LIB = -Lminilibx_macos/ -lmlx -Llibft/ -lft
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))

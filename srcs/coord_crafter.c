@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/22 00:27:41 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/22 06:28:15 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int				coord_crafter(int fd, t_map **map)
 	if (rd == -1)
 		return (-1);
 	rd == 0 ? tablines(map, &save, &rd) : (rd = -1);
-//	ft_lstdel(&save, &ft_memdel);
+	ft_lstdel(&save, &ft_memclr);
 	ft_strdel(&line);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:17:33 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/21 23:58:33 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/22 02:20:46 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static int	lineage(void *mlx, void *win, t_coor start, t_coor end)
 	return (1);
 }
 
-int			draw_line(void *mlx, void *win, t_coor start, t_coor end)
+int			draw_line(t_data **data, t_coor start, t_coor end)
 {
 	if (start.x == end.x)
-		lineage(mlx, win, start, end);
+		lineage((*data)->mlx, (*data)->win, start, end);
 	else
-		dialage(mlx, win, start, end);
+		dialage((*data)->mlx, (*data)->win, start, end);
 	return (1);
 }

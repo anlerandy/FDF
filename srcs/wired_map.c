@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 12:37:16 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/22 00:30:58 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/22 04:54:03 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,57 +20,48 @@ static void		ft_rot_x(double *x, double *y, double a)
 
 	xtmp = *x;
 	teta = a * ((2 * M_PI) / 360.);
-	*x = ((double)*x * cos(teta)) - ((double)*y * sin(teta));
-	*y = (xtmp * sin(teta)) + ((double)*y * cos(teta));
+	*x = (((double)*x * cos(teta)) - ((double)*y * sin(teta)));
+	*y = ((xtmp * sin(teta)) + ((double)*y * cos(teta)));
 }
 
-static t_coor	ft_vector(double z, double x, double y)
+static t_coor	ft_vector(double z, double x, double y, t_data **data)
 {
 	t_coor		point;
-	double		posx;
-	double		posy;
-	double		zom;
-	double		prof;
 
-	posx = 0;
-	posy = 500;
-	zom = 5;
-	prof = 2;
-	ft_rot_x(&x, &y, -45);
-	point.x = (int)floor((x * zom) + posx);
-	point.y = (int)floor((y * (zom / 2)) + posy - (z * prof));
+	ft_rot_x(&x, &y, (*data)->rotx);
+	point.x = (int)floor((x * (*data)->zoom) + (*data)->posx);
+	point.y = (int)floor((y * ((*data)->zoom / 2)) + (*data)->posy -
+			(z * (*data)->depth));
 	return (point);
 }
 
-int				wiremap(void *mlx, void *win, t_map *map)
+int				wiremap(t_data **data, t_map *map)
 {
-	int		i;
-	int		j;
+	double	i;
+	double	j;
 
 	i = 0;
 	j = 0;
-	while (i < map->x && j < map->y)
+	while ((int)i < map->x && (int)j < map->y)
 	{
-		if (i < map->x - 1 && j < map->y - 1)
-			draw_line(mlx, win, ft_vector(map->tab[j][i], (double)i, (double)j),
-					ft_vector(map->tab[j + 1][i], (double)i, (double)j + 1));
+		if ((int)i < map->x - 1 && (int)j < map->y - 1)
+			draw_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j + 1][(int)i], i, j + 1, data));
 		if (j < map->y - 1)
-			draw_line(mlx, win, ft_vector(map->tab[j][i], (double)i, (double)j),
-					ft_vector(map->tab[j][i + 1], (double)i + 1, (double)j));
+			draw_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
 		i++;
-		if (i == map->x - 1 && j < map->y - 1)
-			draw_line(mlx, win, ft_vector(map->tab[j][i], (double)i, (double)j),
-					ft_vector(map->tab[j + 1][i], (double)i, (double)j + 1));
-		if (i == map->x - 1)
+		if ((int)i == map->x - 1 && (int)j < map->y - 1)
+			draw_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j + 1][(int)i], i, j + 1, data));
+		if ((int)i == map->x - 1)
 		{
-			ft_putnbr(map->tab[j][i]);
-			ft_putstr("  ");
 			i = 0;
 			j++;
 		}
-		if (j == map->y - 1)
-			draw_line(mlx, win, ft_vector(map->tab[j][i], (double)i, (double)j),
-					ft_vector(map->tab[j][i + 1], (double)i + 1, (double)j));
+		if ((int)j == map->y - 1)
+			draw_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
 	}
 	return (0);
 }
