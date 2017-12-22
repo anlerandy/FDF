@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:17:33 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/18 12:10:12 by alerandy         ###   ########.fr       */
+/*   Updated: 2017/12/21 23:58:33 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ static int	dialage(void *mlx, void *win, t_coor start, t_coor end)
 	if (fabs(a) < 1)
 		while (start.x != end.x)
 		{
-			mlx_pixel_put(mlx, win, start.x, start.y, 0x5000ff00);
+			mlx_pixel_put(mlx, win, start.x, start.y, 0xffffff);
 			(start.x > end.x ? --start.x : ++start.x);
 			start.y = (a * start.x) + b;
 		}
 	else
 		while (start.y != end.y)
 		{
-			mlx_pixel_put(mlx, win, start.x, start.y, 0x500000ff);
+			mlx_pixel_put(mlx, win, start.x, start.y, 0xffffff);
 			(start.y > end.y ? --start.y : ++start.y);
 			start.x = (start.y - b) / a;
 		}
-	mlx_pixel_put(mlx, win, start.x, start.y, 0x5000ff00);
+	mlx_pixel_put(mlx, win, start.x, start.y, 0xffffff);
 	return (1);
 }
 
