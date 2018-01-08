@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/22 06:28:15 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/08 15:26:32 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ static void		lineatoier(t_map **map, char **tab, int *rd, int j)
 		while (i < (*map)->x)
 		{
 			(*map)->tab[j][i] = ft_atoi(tab[i]);
+			ft_strdel(&tab[i]);
 			i++;
 		}
 	else
 		*rd = -1;
+	(*rd != -1 ? ft_memdel((void **)tab) : *rd);
 }
 
 static void		tablines(t_map **map, t_list **save, int *rd)
