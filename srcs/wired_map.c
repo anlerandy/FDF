@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 12:37:16 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/22 04:54:03 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/08 13:39:01 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,8 @@ int				wiremap(t_data **data, t_map *map)
 		if ((int)i == map->x - 1 && (int)j < map->y - 1)
 			draw_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
 					ft_vector(map->tab[(int)j + 1][(int)i], i, j + 1, data));
-		if ((int)i == map->x - 1)
-		{
-			i = 0;
-			j++;
-		}
+		((int)i == map->x - 1 ? j++ : i);
+		((int)i == map->x - 1 ? (i = 0) : i);
 		if ((int)j == map->y - 1)
 			draw_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
 					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
