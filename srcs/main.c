@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/08 13:52:59 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/08 16:21:51 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static	int	ft_infinrot(void *param)
 	if (data->flag)
 		data->rotx++;
 	mlx_put_image_to_window(NULL, data->win, (char*)data->pimg, 0, 0);
-	wiremap(&data, (data)->map);
+	wiremap2(&data, (data)->map);
 	return (1);
 }
 
@@ -40,13 +40,13 @@ static int	ft_zoom(int key, int x, int y, void *param)
 	if (key == 4 && (data)->zoom > 1)
 		data->zoom = data->zoom / 1.1;
 	mlx_put_image_to_window(NULL, data->win, (char*)data->pimg, 0, 0);
-	wiremap(&data, (data)->map);
+	wiremap2(&data, (data)->map);
 	return (0);
 }
 
 static void	ft_input(t_data *data)
 {
-	wiremap(&data, data->map);
+	wiremap2(&data, data->map);
 	mlx_loop_hook(data->mlx, ft_infinrot, (void*)data);
 	mlx_key_hook(data->win, ft_exit, (void *)data);
 	mlx_mouse_hook(data->win, ft_zoom, (void *)data);

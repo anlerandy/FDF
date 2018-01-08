@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 06:26:45 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/08 15:14:32 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/08 15:43:00 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_memclr(void *ap, size_t len)
 {
-	ft_bzero(ap, len);
-	ft_memdel(&ap);
+	len++;
+//	ft_bzero(ap, len);
+//	ft_strdel((char **)&ap);
 	if (ap)
 		free(ap);
 }

@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/08 13:54:04 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/08 16:22:23 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void			ft_tabdel(void *tab, size_t len);
 int				wiremap(t_data **data, t_map *map);
 void			ft_memclr(void *ap, size_t len);
 int				ft_exit(int key, void *param);
+int				put_line(t_data **data, t_coor start, t_coor end);
+int				wiremap2(t_data **data, t_map *map);
 
 #endif

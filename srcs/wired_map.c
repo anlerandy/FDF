@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 12:37:16 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/08 13:39:01 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/08 16:19:48 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static t_coor	ft_vector(double z, double x, double y, t_data **data)
 	point.x = (int)floor((x * (*data)->zoom) + (*data)->posx);
 	point.y = (int)floor((y * ((*data)->zoom / 2)) + (*data)->posy -
 			(z * (*data)->depth));
+	point.z = z;
 	return (point);
 }
 
@@ -58,6 +59,34 @@ int				wiremap(t_data **data, t_map *map)
 		((int)i == map->x - 1 ? (i = 0) : i);
 		if ((int)j == map->y - 1)
 			draw_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
+	}
+	return (0);
+}
+
+int				wiremap2(t_data **data, t_map *map)
+{
+	double	i;
+	double	j;
+
+	i = 0;
+	j = 0;
+	while ((int)i < map->x && (int)j < map->y)
+	{
+		if ((int)i < map->x - 1 && (int)j < map->y - 1)
+			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j + 1][(int)i], i, j + 1, data));
+		if (j < map->y - 1)
+			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
+		i++;
+		if ((int)i == map->x - 1 && (int)j < map->y - 1)
+			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
+					ft_vector(map->tab[(int)j + 1][(int)i], i, j + 1, data));
+		((int)i == map->x - 1 ? j++ : i);
+		((int)i == map->x - 1 ? (i = 0) : i);
+		if ((int)j == map->y - 1)
+			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
 					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
 	}
 	return (0);
