@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:53:12 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/08 13:55:27 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/10 12:41:15 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_exit(int key, void *param)
 		data->depth -= 1;
 	key == 85 ? (data->flag = (data->flag + 1) % 2) : key;
 	mlx_put_image_to_window(NULL, data->win, (char*)data->pimg, 0, 0);
-	wiremap(&data, (data)->map);
+//	wiremap(&data, (data)->map);
 	ft_putstr("\nKeycode = ");
 	ft_putnbr(key);
 	return (0);

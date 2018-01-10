@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/08 16:22:23 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/10 13:01:00 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.05"
+# define WIN "WireCraft 0.06.2"
 
 typedef struct	s_coor
 {
@@ -26,9 +26,9 @@ typedef struct	s_coor
 
 typedef struct	s_map
 {
-	int			**tab;
-	int			x;
-	int			y;
+	double		**tab;
+	double		x;
+	double		y;
 }				t_map;
 
 typedef struct	s_data
@@ -54,13 +54,12 @@ typedef struct	s_data
 	int			flag;
 }				t_data;
 
-int				draw_line(t_data **data, t_coor start, t_coor end);
 int				coord_crafter(int fd, t_map **map);
 void			ft_tabdel(void *tab, size_t len);
-int				wiremap(t_data **data, t_map *map);
 void			ft_memclr(void *ap, size_t len);
 int				ft_exit(int key, void *param);
 int				put_line(t_data **data, t_coor start, t_coor end);
 int				wiremap2(t_data **data, t_map *map);
+int				*ft_intset(int *tab, int i, int size);
 
 #endif
