@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/08 16:22:23 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/10 22:57:03 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.05"
+# define WIN "WireCraft 0.05.2"
 
 typedef struct	s_coor
 {
@@ -62,5 +62,7 @@ void			ft_memclr(void *ap, size_t len);
 int				ft_exit(int key, void *param);
 int				put_line(t_data **data, t_coor start, t_coor end);
 int				wiremap2(t_data **data, t_map *map);
+int				ft_infinrot(void *param);
+int				ft_zoom(int key, int x, int y, void *param);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2018/01/08 16:22:08 by alerandy         ###   ########.fr        #
+#    Updated: 2018/01/10 21:49:49 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fdf
 SRC_PATH = srcs/
 OBJ_PATH = objects/
 SRC_NAME = wireframe.c coord_crafter.c ft_tabdel.c wired_map.c ft_memclr.c \
-		   ft_input.c ft_putpixel.c main.c
+		   ft_input.c main.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 CC = clang $(FLAG)
 FLAG = -Wall -Werror -Wextra -g
