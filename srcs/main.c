@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/10 12:45:55 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/10 18:47:46 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	int	ft_infinrot(void *param)
 
 	data = (t_data*)param;
 	if (data->flag)
-		data->rotx++;
+		data->rotx = (int)(data->rotx + 1) % 360;
 	mlx_put_image_to_window(NULL, data->win, (char*)data->pimg, 0, 0);
 	data->img = ft_intset(data->img, 0xd5000000, data->win_w * data->win_h);
 	wiremap2(&data, (data)->map);

@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/10 13:01:00 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/10 21:42:28 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.06.2"
+# define WIN "WireCraft 0.06.3"
 
 typedef struct	s_coor
 {
-	float		x;
-	float		y;
-	float		z;
+	double		x;
+	double		y;
+	double		z;
 }				t_coor;
 
 typedef struct	s_map
