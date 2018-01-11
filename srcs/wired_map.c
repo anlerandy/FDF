@@ -13,7 +13,6 @@
 #include "fdf.h"
 #include "math.h"
 
-/*
 static void		ft_rot_z(double *x, double *y, double a)
 {
 	double	teta;
@@ -24,7 +23,6 @@ static void		ft_rot_z(double *x, double *y, double a)
 	*x = (*x * cos(teta)) - (*y * sin(teta));
 	*y = (xtmp * sin(teta)) + (*y * cos(teta));
 }
-*/
 
 static void		ft_rot_x(double *y, double *z, double a)
 {
@@ -53,7 +51,7 @@ static t_coor	ft_vector(double z, double x, double y, t_data **data)
 	t_coor	point;
 
 	z = z * (*data)->depth;
-//	ft_rot_z(&x, &y, (*data)->rotz);
+	ft_rot_z(&x, &y, (*data)->rotz);
 	ft_rot_x(&y, &z, (*data)->rotx);
 	ft_rot_y(&x, &z, (*data)->roty);
 	point.x = floor((x * (*data)->zoom) + (*data)->posx);
