@@ -6,11 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/01/10 23:06:30 by alerandy         ###   ########.fr       */
-=======
-/*   Updated: 2018/01/11 05:49:34 by alerandy         ###   ########.fr       */
->>>>>>> images
+/*   Updated: 2018/01/11 07:38:30 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +52,12 @@ static void	set_data(t_data *data, int ac, char **av)
 	}
 	data->posx = data->win_w / 3;
 	data->posy = data->win_h / 4;
-	data->zoom = 1;
+	data->zoom = 2;
 	data->depth = 1;
 	data->map = NULL;
-	data->rotx = 60;
-	data->roty = 15;
+	data->rotx = 45;
+	data->roty = 0;
+	data->rotz = -60;
 }
 
 int			main(int ac, char **av)
@@ -72,7 +69,7 @@ int			main(int ac, char **av)
 	set_data(data, ac, av);
 	if (ac > 4 && ac < 2)
 		return (-1);
-	(data->fd = open(av[1], O_RDONLY)) == -1 ? exit(0) : ft_putendl("FD done");
+	(data->fd = open(av[1], O_RDONLY)) == -1 ? exit(0) : ft_putendl(av[1]);
 	((coord_crafter(data->fd, &(data->map)) != 1) ? exit(0) : data->fd);
 	if (!(data->mlx = mlx_init()))
 		return (-1);

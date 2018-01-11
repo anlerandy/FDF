@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/11 05:30:34 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/11 14:14:47 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int		save_line(char **line, t_list **save, t_map **map)
 		return (-1);
 	if (!*save)
 	{
-		if (!(*save = ft_lstnew(*line, ft_strlen(*line) + 1)))
+		if (!(*save = ft_lstnew(*line, ft_strlen(*line))))
 			return (-1);
 	}
 	else
@@ -68,7 +68,7 @@ static void		lineatoier(t_map **map, char **tab, int *rd, int j)
 	int			i;
 
 	i = 0;
-	if (((*map)->tab[j] = ft_memalloc(sizeof(int) * ((*map)->x))))
+	if (((*map)->tab[j] = ft_memalloc(sizeof(int*) * ((*map)->x + 1))))
 		while (i < (*map)->x)
 		{
 			(*map)->tab[j][i] = ft_atoi(tab[i]);
@@ -88,7 +88,7 @@ static void		tablines(t_map **map, t_list **save, int *rd)
 
 	tmp = *save;
 	j = 0;
-	if (((*map)->tab = ft_memalloc(sizeof(int *) * (*map)->y)))
+	if (((*map)->tab = ft_memalloc(sizeof(int **) * ((*map)->y + 1))))
 	{
 		while (tmp && *rd == 0)
 		{
@@ -124,7 +124,7 @@ int				coord_crafter(int fd, t_map **map)
 	if (rd == -1)
 		return (-1);
 	rd == 0 ? tablines(map, &save, &rd) : (rd = -1);
-	ft_lstdel(&save, &ft_memclr);
+	//ft_lstdel(&save, &ft_memclr);
 	ft_strdel(&line);
 	return (1);
 }

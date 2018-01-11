@@ -6,17 +6,14 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 22:04:04 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/18 22:10:28 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/11 13:01:37 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	ft_tabdel(void *tab, size_t len)
+void	ft_tabdel(char **tab)
 {
-	if (tab)
-		free(tab);
+	free(tab);
 	tab = NULL;
-	if (len)
-		len = 0;
 }

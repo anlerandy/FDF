@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:53:12 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/11 07:09:52 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/11 07:37:52 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ static int		ft_rot_input(int key, t_data *data)
 	key == 88 ? data->roty = (int)(data->roty - 15) % 360 : key;
 	key == 92 ? data->rotz = (int)(data->rotz + 15) % 360 : key;
 	key == 85 ? data->rotz = (int)(data->rotz - 15) % 360 : key;
+	if (key == 15)
+	{
+		data->posx = data->win_w / 3;
+		data->posy = data->win_h / 3;
+		data->zoom = 2;
+		data->depth = 1;
+		data->rotx = 45;
+		data->roty = 0;
+		data->rotz = -60;
+		data->flag = 0;
+		data->flag2 = 0;
+	}
 	return (0);
 }
 
@@ -48,10 +60,7 @@ int				ft_zoom(int key, int x, int y, void *param)
 	y = 0;
 	data = (t_data *)param;
 	if (key == 5)
-	{
-		ft_putnbr((int)data->zoom);
 		data->zoom *= 1.1;
-	}
 	if (key == 4 && (data)->zoom > 1)
 		data->zoom = data->zoom / 1.1;
 	data->frame.img = ft_intset(data->frame.img, BLUR,
@@ -80,7 +89,5 @@ int				ft_exit(int key, void *param)
 	ft_rot_input(key, data);
 	key == 82 ? (data->flag = (data->flag + 1) % 2) : key;
 	key == 65 ? (data->flag2 = (data->flag2 + 1) % 2) : key;
-	ft_putstr("\nKeycode = ");
-	ft_putnbr(key);
 	return (0);
 }

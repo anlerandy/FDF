@@ -6,12 +6,12 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:17:33 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/11 05:30:26 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/11 07:12:38 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "math.h"
+#include <math.h>
 
 static void		ft_rot_z(double *x, double *y, double a)
 {

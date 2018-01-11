@@ -6,11 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/01/10 22:57:03 by alerandy         ###   ########.fr       */
-=======
-/*   Updated: 2018/01/11 05:41:13 by alerandy         ###   ########.fr       */
->>>>>>> images
+/*   Updated: 2018/01/11 14:22:10 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +15,7 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.06.4"
+# define WIN "WireCraft 0.06.5"
 # define BLUR 0x99000000
 
 typedef struct	s_coor
