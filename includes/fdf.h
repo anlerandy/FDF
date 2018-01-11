@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/10 21:42:28 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/11 05:41:13 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,31 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.06.3"
+# define WIN "WireCraft 0.06.4"
+# define BLUR 0x99000000
 
 typedef struct	s_coor
 {
-	double		x;
-	double		y;
-	double		z;
+	float		x;
+	float		y;
+	float		z;
 }				t_coor;
 
 typedef struct	s_map
 {
-	double		**tab;
-	double		x;
-	double		y;
+	int			**tab;
+	int			x;
+	int			y;
 }				t_map;
+
+typedef struct	s_frame
+{
+	void		*pimg;
+	char		*img;
+	int			bpp;
+	int			s_l;
+	int			ndia;
+}				t_frame;
 
 typedef struct	s_data
 {
@@ -46,12 +56,9 @@ typedef struct	s_data
 	double		roty;
 	double		rotz;
 	t_map		*map;
-	void		*pimg;
-	int			*img;
-	int			bpp;
-	int			s_l;
-	int			ndia;
 	int			flag;
+	int			flag2;
+	t_frame		frame;
 }				t_data;
 
 int				coord_crafter(int fd, t_map **map);
@@ -60,6 +67,8 @@ void			ft_memclr(void *ap, size_t len);
 int				ft_exit(int key, void *param);
 int				put_line(t_data **data, t_coor start, t_coor end);
 int				wiremap2(t_data **data, t_map *map);
-int				*ft_intset(int *tab, int i, int size);
+char			*ft_intset(char *tab, int i, int size);
+int				ft_zoom(int key, int x, int y, void *param);
+int				ft_infinrot(void *param);
 
 #endif

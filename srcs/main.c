@@ -6,67 +6,58 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/10 18:47:46 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/11 05:49:34 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 
-static	int	ft_infinrot(void *param)
-{
-	t_data *data;
-
-	data = (t_data*)param;
-	if (data->flag)
-		data->rotx = (int)(data->rotx + 1) % 360;
-	mlx_put_image_to_window(NULL, data->win, (char*)data->pimg, 0, 0);
-	data->img = ft_intset(data->img, 0xd5000000, data->win_w * data->win_h);
-	wiremap2(&data, (data)->map);
-	return (1);
-}
-
-static int	ft_zoom(int key, int x, int y, void *param)
-{
-	t_data *data;
-
-	x = 0;
-	y = 0;
-	data = (t_data *)param;
-	if (key == 5)
-	{
-		ft_putnbr((int)data->zoom);
-		data->zoom *= 2;
-	}
-	if (key == 4 && (data)->zoom > 1)
-		data->zoom = data->zoom / 2;
-	data->img = ft_intset(data->img, 0xd5000000, data->win_w * data->win_h);
-	wiremap2(&data, (data)->map);
-	return (0);
-}
-
 static void	ft_input(t_data *data)
 {
-	data->img = ft_intset(data->img, 0xd5000000, data->win_w * data->win_h);
+	data->frame.img = ft_intset(data->frame.img, BLUR,
+			data->win_w * data->win_h);
 	wiremap2(&data, data->map);
-	mlx_put_image_to_window(data->mlx, data->win, (char*)data->pimg, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->frame.pimg, 0, 0);
 	mlx_loop_hook(data->mlx, ft_infinrot, (void*)data);
-	mlx_key_hook(data->win, ft_exit, (void *)data);
+	mlx_hook(data->win, 2, 0, ft_exit, (void *)data);
 	mlx_mouse_hook(data->win, ft_zoom, (void *)data);
 	mlx_loop(data->mlx);
 }
 
-int			*ft_intset(int *tab, int i, int size)
+char		*ft_intset(char *tab, int i, int size)
 {
 	int x;
 
 	x = 0;
 	while (x < size)
 	{
-		tab[x] = i;
+		((int*)tab)[x] = i;
 		x++;
 	}
 	return (tab);
+}
+
+static void	set_data(t_data *data, int ac, char **av)
+{
+	if (ac == 4)
+	{
+		data->win_w = ft_atoi(av[2]) == 0 ? 1100 : ft_atoi(av[2]);
+		data->win_h = ft_atoi(av[3]) == 0 ? 1100 : ft_atoi(av[3]);
+	}
+	else
+	{
+		data->win_w = 1100;
+		data->win_h = 1100;
+	}
+	data->posx = data->win_w / 3;
+	data->posy = data->win_h / 4;
+	data->zoom = 1;
+	data->depth = 1;
+	data->map = NULL;
+	data->rotx = 60;
+	data->roty = 15;
+
 }
 
 int			main(int ac, char **av)
@@ -75,13 +66,7 @@ int			main(int ac, char **av)
 
 	if (!(data = ft_memalloc(sizeof(t_data))))
 		return (-1);
-	data->win_w = ac == 4 ? ft_atoi(av[2]) : 1100;
-	data->win_h = ac == 4 ? ft_atoi(av[3]) : 1100;
-	data->posx = data->win_w / 2;
-	data->posy = data->win_h / 2;
-	data->zoom = 1;
-	data->depth = 1;
-	data->map = NULL;
+	set_data(data, ac, av);
 	if (ac > 4 && ac < 2)
 		return (-1);
 	(data->fd = open(av[1], O_RDONLY)) == -1 ? exit(0) : ft_putendl("FD done");
@@ -90,10 +75,11 @@ int			main(int ac, char **av)
 		return (-1);
 	if (!(data->win = mlx_new_window(data->mlx, data->win_w, data->win_h, WIN)))
 		return (-1);
-	data->pimg = mlx_new_image(data->mlx, data->win_w, data->win_h);
-	data->img = (int *)mlx_get_data_addr(data->pimg, &(data->bpp),
-			&(data->s_l), &(data->ndia));
-	data->img = ft_intset(data->img, 0xd5000000, data->win_w * data->win_h);
+	data->frame.pimg = mlx_new_image(data->mlx, data->win_w, data->win_h);
+	data->frame.img = mlx_get_data_addr(data->frame.pimg, &(data->frame.bpp),
+			&(data->frame.s_l), &(data->frame.ndia));
+	data->frame.img = ft_intset(data->frame.img, BLUR,
+			data->win_w * data->win_h);
 	ft_input(data);
 	return (1);
 }
