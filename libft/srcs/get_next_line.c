@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:07:29 by alerandy          #+#    #+#             */
-/*   Updated: 2017/12/11 17:34:17 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 02:30:13 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static int		join_read(const int fd, t_read *red, t_stock **stock, int *eof)
 	(*stock)->fd = fd;
 	if ((*stock)->str && (*stock)->done == FALSE)
 	{
+		free(red->buffer);
 		if (!(red->buffer = ft_strndup((*stock)->str + (*stock)->index,
 						(*stock)->len - (*stock)->index)))
 			return (-1);

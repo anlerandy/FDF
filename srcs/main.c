@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/11 07:38:30 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 04:48:47 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void	set_data(t_data *data, int ac, char **av)
 {
 	if (ac == 4)
 	{
-		data->win_w = ft_atoi(av[2]) == 0 ? 1100 : ft_atoi(av[2]);
-		data->win_h = ft_atoi(av[3]) == 0 ? 1100 : ft_atoi(av[3]);
+		data->win_w = ft_atoi(av[2]) < 100 ? 1100 : ft_atoi(av[2]);
+		data->win_h = ft_atoi(av[3]) < 100 ? data->win_w : ft_atoi(av[3]);
 	}
 	else
 	{
@@ -51,10 +51,9 @@ static void	set_data(t_data *data, int ac, char **av)
 		data->win_h = 1100;
 	}
 	data->posx = data->win_w / 3;
-	data->posy = data->win_h / 4;
+	data->posy = data->win_h / 2;
 	data->zoom = 2;
 	data->depth = 1;
-	data->map = NULL;
 	data->rotx = 45;
 	data->roty = 0;
 	data->rotz = -60;

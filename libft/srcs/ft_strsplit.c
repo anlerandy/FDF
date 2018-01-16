@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:23:20 by alerandy          #+#    #+#             */
-/*   Updated: 2017/11/15 21:37:55 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/15 23:35:32 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ static char		**ft_tab_addr(char *nstr, char const *str, char c)
 	char	**tab;
 	size_t	a;
 	size_t	j;
+	int		i;
 
 	j = 0;
+	i = 0;
 	a = ft_count_word(str, c);
-	if (!(tab = (char **)malloc(sizeof(char*) * a + 1)))
+	if (!(tab = ft_memalloc(sizeof(char*) * (a + 1))))
 		return (NULL);
 	if (a == 0)
 	{
@@ -78,12 +80,13 @@ static char		**ft_tab_addr(char *nstr, char const *str, char c)
 	}
 	while (j < a)
 	{
-		tab[j] = ft_strnew(ft_strlen(nstr) + 1);
-		ft_strcpy(tab[j], nstr);
-		nstr = nstr + ft_strlen(nstr) + 1;
+		tab[j] = ft_strnew(ft_strlen(nstr + i) + 1);
+		ft_strcpy(tab[j], nstr + i);
+		i = i + ft_strlen(nstr + i) + 1;
 		j++;
 	}
 	tab[j] = 0;
+	free(nstr);
 	return (tab);
 }
 
@@ -120,7 +123,7 @@ char			**ft_strsplit(char const *s, char c)
 	if (!s)
 		return (0);
 	j = ft_count(s, c) + ft_count_word(s, c);
-	if (!(nstr = (char *)malloc(sizeof(char) * j)))
+	if (!(nstr = ft_memalloc(sizeof(char) * j)))
 		return (NULL);
 	j = 0;
 	nstr = ft_n_long_str(s, nstr, c);

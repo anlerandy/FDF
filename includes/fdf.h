@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/11 14:22:10 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 04:55:13 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.06.5"
+# define WIN "WireCraft 0.06.7"
 # define BLUR 0x99000000
 
 typedef struct	s_coor
@@ -62,7 +62,7 @@ typedef struct	s_data
 }				t_data;
 
 int				coord_crafter(int fd, t_map **map);
-void			ft_tabdel(void *tab, size_t len);
+void			ft_tabdel(void *tab, int len);
 void			ft_memclr(void *ap, size_t len);
 int				ft_exit(int key, void *param);
 int				put_line(t_data **data, t_coor start, t_coor end);

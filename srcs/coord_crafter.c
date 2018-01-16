@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/11 14:14:47 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 04:53:07 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int		save_line(char **line, t_list **save, t_map **map)
 		return (-1);
 	if (!*save)
 	{
-		if (!(*save = ft_lstnew(*line, ft_strlen(*line))))
+		if (!(*save = ft_lstnew(*line, ft_strlen(*line) + 1)))
 			return (-1);
 	}
 	else
@@ -68,16 +68,15 @@ static void		lineatoier(t_map **map, char **tab, int *rd, int j)
 	int			i;
 
 	i = 0;
-	if (((*map)->tab[j] = ft_memalloc(sizeof(int*) * ((*map)->x + 1))))
+	if (((*map)->tab[j] = ft_memalloc(sizeof(int) * ((*map)->x))))
 		while (i < (*map)->x)
 		{
 			(*map)->tab[j][i] = ft_atoi(tab[i]);
-			ft_strdel(&tab[i]);
 			i++;
 		}
 	else
 		*rd = -1;
-	(*rd != -1 ? ft_memdel((void **)tab) : *rd);
+	(*rd != -1 ? ft_tabdel(tab, (*map)->x) : *rd);
 }
 
 static void		tablines(t_map **map, t_list **save, int *rd)
@@ -88,7 +87,13 @@ static void		tablines(t_map **map, t_list **save, int *rd)
 
 	tmp = *save;
 	j = 0;
-	if (((*map)->tab = ft_memalloc(sizeof(int **) * ((*map)->y + 1))))
+	ft_putstr("Lignes lu : ");
+	ft_putnbr((*map)->y);
+	ft_putchar('\n');
+	ft_putstr("Colonnes lu : ");
+	ft_putnbr((*map)->x);
+	ft_putchar('\n');
+	if (((*map)->tab = ft_memalloc(sizeof(int *) * ((*map)->y))))
 	{
 		while (tmp && *rd == 0)
 		{
@@ -112,19 +117,17 @@ int				coord_crafter(int fd, t_map **map)
 	save = NULL;
 	if (!(*map = ft_memalloc(sizeof(t_map))))
 		return (-1);
-	(*map)->x = 0;
-	(*map)->y = 0;
 	while (rd == 1)
 		if ((rd = get_next_line(fd, &line)) == 1)
 		{
-			rd == -1 ? ft_putendl("Lecture échouée") : rd;
 			rd == 1 ? (rd = save_line(&line, &save, map)) : ft_putendl("Err 2");
 			rd == 1 ? ((*map)->y += 1) : ft_putendl("Erreur 1");
+			ft_strdel(&line);
 		}
+	rd == -1 ? ft_putendl("Lecture échouée") : rd;
 	if (rd == -1)
 		return (-1);
 	rd == 0 ? tablines(map, &save, &rd) : (rd = -1);
-	//ft_lstdel(&save, &ft_memclr);
-	ft_strdel(&line);
+	ft_lstdel(&save, &ft_memclr);
 	return (1);
 }

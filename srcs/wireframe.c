@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:17:33 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/11 07:12:38 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/15 23:16:57 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static t_coor	ft_vector(double z, double x, double y, t_data **data)
 	ft_rot_x(&y, &z, (*data)->rotx);
 	ft_rot_y(&x, &z, (*data)->roty);
 	point.x = floor((x * (*data)->zoom) + (*data)->posx);
-	point.y = floor((y * ((*data)->zoom / 2)) + (*data)->posy);
+	point.y = floor((y * ((*data)->zoom)) + (*data)->posy);
 	return (point);
 }
 
