@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:07:29 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 08:55:32 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 10:30:46 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static int		join_read(const int fd, t_read *red, t_stock **stock, int *eof)
 		(*stock)->index = 0;
 		ft_strdel(&((*stock)->str));
 	}
+	(!red->buffer ? (red->buffer = ft_memalloc(1)) : red->buffer);
 	if (!((*stock)->str = ft_strnew(red->ret + (*stock)->len + 1)))
 		return (-1);
 	(*stock)->str = ft_strcpy((*stock)->str, red->buffer);
@@ -126,7 +127,7 @@ int				get_next_line(const int fd, char **line)
 	if (!line || BUFF_SIZE < 1)
 		return (-1);
 	*line = NULL;
-	red.buffer = ft_memalloc(1);
+	red.buffer = NULL;
 	while (!(*line) && eof == FALSE)
 	{
 		create_line(fd, line, &save, 0);

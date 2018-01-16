@@ -6,7 +6,7 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2018/01/16 09:14:44 by alerandy         ###   ########.fr        #
+#    Updated: 2018/01/16 10:33:24 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 all : $(NAME)
 
 $(NAME) : libft success $(OBJ)
-	@$(CC) $(LIB) $(FRAME) $(OBJ) -g -o $(NAME)
+	@$(CC) $(LIB) $(FRAME) $(OBJ) -o $(NAME)
 
 libft :
 	@$(MAKE) -C libft/
@@ -39,7 +39,7 @@ minilibx :
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) -Iminilibx_macos -Iincludes -Ilibft/includes -g -o $@ -c $<
+	@$(CC) -Iminilibx_macos -Iincludes -Ilibft/includes -o $@ -c $<
 
 clean :
 	@rm -f $(OBJ_PATH)

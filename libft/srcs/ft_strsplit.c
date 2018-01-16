@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 15:23:20 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/15 23:35:32 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 10:18:28 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ char			**ft_strsplit(char const *s, char c)
 	if (!s)
 		return (0);
 	j = ft_count(s, c) + ft_count_word(s, c);
-	if (!(nstr = ft_memalloc(sizeof(char) * j)))
+	if (!(nstr = ft_memalloc(sizeof(char) * j + 1)))
 		return (NULL);
 	j = 0;
 	nstr = ft_n_long_str(s, nstr, c);

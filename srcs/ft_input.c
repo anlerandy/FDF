@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:53:12 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 06:41:03 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 09:48:00 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,13 @@ int				ft_exit(int key, void *param)
 {
 	t_data *data;
 
-	key == 53 ? exit(0) : key;
 	data = (t_data *)param;
+	if (key == 53)
+	{
+		mlx_destroy_image(data->mlx, data->frame.pimg);
+		mlx_destroy_window(data->mlx, data->win);
+		exit(0);
+	}
 	if (key == 69 || key == 24)
 		data->zoom *= 2;
 	if ((key == 78 || key == 27) && (data)->zoom > 1)
