@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 09:28:36 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 11:56:01 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,27 @@ static void	set_data(t_data *data, int ac, char **av)
 	data->rotz = -60;
 }
 
+void		usage(int err)
+{
+	if (err == 1)
+	{
+		ft_putendl("Arguments incorrectes : - ./fdf [file] (width height)");
+		ft_putendl("\t\t\tEx. : ./fdf test_maps/42.fdf 2555 1390");
+		ft_putendl("NB :\twidth cannot exceed 2555 and be less than 100");
+		ft_putendl("\theight cannot exceed 1390 and be less than 100\n");
+	}
+	if (err == 2)
+		ft_putendl("File is missing.\n");
+	if (err == 3)
+		ft_putendl("File is not a supported file : text file or .fdf only.\n");
+	if (err == 4)
+	{
+		ft_putstr("File is not valid : ");
+		ft_putendl("must contain a constant size along the lines.\n");
+	}
+	exit(0);
+}
+
 int			main(int ac, char **av)
 {
 	t_data	*data;
@@ -66,9 +87,10 @@ int			main(int ac, char **av)
 	if (!(data = ft_memalloc(sizeof(t_data))))
 		return (-1);
 	set_data(data, ac, av);
-	if (ac > 4 && ac < 2)
-		return (-1);
-	(data->fd = open(av[1], O_RDONLY)) == -1 ? exit(0) : ft_putendl(av[1]);
+	if (ac > 4 || ac < 2)
+		usage(1);
+	(data->fd = open(av[1], O_RDONLY)) == -1 ? usage(2) : ft_putstr("Reading ");
+	data->fd != -1 ? ft_putendl(av[1]) : ft_putstr("");
 	((coord_crafter(data->fd, &data->map) != 1) ? exit(0) : data->fd);
 	if (!(data->mlx = mlx_init()))
 		return (-1);

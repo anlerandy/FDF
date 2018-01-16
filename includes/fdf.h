@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 07:21:29 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 11:44:54 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.06.7"
+# define WIN "WireCraft 0.08"
 # define BLUR 0x99000000
 # define BLUE 0x0000ff
 # define WHITE 0xffffff
@@ -75,5 +75,6 @@ int				wiremap2(t_data **data, t_map *map);
 char			*ft_intset(char *tab, int i, int size);
 int				ft_zoom(int key, int x, int y, void *param);
 int				ft_infinrot(void *param);
+void			usage(int err);
 
 #endif

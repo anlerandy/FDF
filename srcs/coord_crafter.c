@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 09:28:29 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 11:50:15 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,11 @@ int				coord_crafter(int fd, t_map **map)
 	while (rd == 1)
 		if ((rd = get_next_line(fd, &line)) == 1)
 		{
-			rd == 1 ? (rd = save_line(&line, &save, map)) : ft_putendl("Err 2");
-			rd == 1 ? ((*map)->y += 1) : ft_putendl("Erreur 1");
+			rd == 1 ? (rd = save_line(&line, &save, map)) : usage(3);
+			rd == 1 ? ((*map)->y += 1) : usage(4);
 			ft_strdel(&line);
 		}
-	rd == -1 ? ft_putendl("Lecture échouée") : rd;
+	rd == -1 ? usage(3) : rd;
 	if (rd == -1)
 		return (-1);
 	rd == 0 ? tablines(map, &save, &rd) : (rd = -1);
