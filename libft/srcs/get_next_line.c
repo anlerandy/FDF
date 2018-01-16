@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:07:29 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 02:30:13 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 08:55:32 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int				get_next_line(const int fd, char **line)
 	if (!line || BUFF_SIZE < 1)
 		return (-1);
 	*line = NULL;
-	red.buffer = ft_memalloc(0);
+	red.buffer = ft_memalloc(1);
 	while (!(*line) && eof == FALSE)
 	{
 		create_line(fd, line, &save, 0);

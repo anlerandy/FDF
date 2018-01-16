@@ -6,7 +6,7 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2018/01/16 07:47:53 by alerandy         ###   ########.fr        #
+#    Updated: 2018/01/16 09:14:44 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJ_PATH = objects/
 SRC_NAME = wireframe.c coord_crafter.c ft_tabdel.c ft_memclr.c \
 		   ft_input.c ft_putpixel.c main.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
-CC = clang $(FLAG)
+CC = gcc $(FLAG)
 FLAG = -Wall -Werror -Wextra -g
 FRAME = -framework OpenGL -framework AppKit
 LIB = -Lminilibx_macos/ -lmlx -Llibft/ -lft
@@ -26,7 +26,7 @@ OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 all : $(NAME)
 
 $(NAME) : libft success $(OBJ)
-	@$(CC) $(LIB) $(FRAME) $(OBJ) -fsanitize=address -o $(NAME)
+	@$(CC) $(LIB) $(FRAME) $(OBJ) -g -o $(NAME)
 
 libft :
 	@$(MAKE) -C libft/
@@ -39,7 +39,7 @@ minilibx :
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) -Iminilibx_macos -Iincludes -Ilibft/includes -fsanitize=address -o $@ -c $<
+	@$(CC) -Iminilibx_macos -Iincludes -Ilibft/includes -g -o $@ -c $<
 
 clean :
 	@rm -f $(OBJ_PATH)
