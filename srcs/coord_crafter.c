@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 04:53:07 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 07:44:34 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void		lineatoier(t_map **map, char **tab, int *rd, int j)
 		while (i < (*map)->x)
 		{
 			(*map)->tab[j][i] = ft_atoi(tab[i]);
+			((*map)->z < ft_atoi(tab[i]) ? ((*map)->z = ft_atoi(tab[i])) : i);
 			i++;
 		}
 	else
@@ -98,7 +99,8 @@ static void		tablines(t_map **map, t_list **save, int *rd)
 		while (tmp && *rd == 0)
 		{
 			line = (char *)tmp->content;
-			lineatoier(map, ft_strsplit(line, ' '), rd, j++);
+			lineatoier(map, ft_strsplit(line, ' '), rd, j);
+			j++;
 			tmp = tmp->next;
 		}
 	}

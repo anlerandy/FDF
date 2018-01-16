@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 04:48:47 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 06:40:43 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			main(int ac, char **av)
 	if (ac > 4 && ac < 2)
 		return (-1);
 	(data->fd = open(av[1], O_RDONLY)) == -1 ? exit(0) : ft_putendl(av[1]);
-	((coord_crafter(data->fd, &(data->map)) != 1) ? exit(0) : data->fd);
+	((coord_crafter(data->fd, &data->map) != 1) ? exit(0) : data->fd);
 	if (!(data->mlx = mlx_init()))
 		return (-1);
 	if (!(data->win = mlx_new_window(data->mlx, data->win_w, data->win_h, WIN)))

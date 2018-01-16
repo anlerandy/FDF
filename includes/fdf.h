@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 04:55:13 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/16 07:21:29 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 # define WIN "WireCraft 0.06.7"
 # define BLUR 0x99000000
+# define BLUE 0x0000ff
+# define WHITE 0xffffff
+# define YELLOW 0xffff00
+# define RED 0xff0000
 
 typedef struct	s_coor
 {
@@ -27,6 +31,7 @@ typedef struct	s_coor
 
 typedef struct	s_map
 {
+	int			z;
 	int			**tab;
 	int			x;
 	int			y;
