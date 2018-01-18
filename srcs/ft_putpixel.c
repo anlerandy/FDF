@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:44:50 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/18 18:05:27 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:41:37 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	dialex(t_coor start, t_coor end, t_data **data, int c)
 			(start.y > end.y ? --start.y : ++start.y);
 			start.x = (start.y - b) / a;
 		}
+	ft_img_pixel_put(data, start.x, start.y, c);
 	return (1);
 }
 
