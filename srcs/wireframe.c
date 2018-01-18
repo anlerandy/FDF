@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 16:17:33 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/15 23:16:57 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/18 18:33:07 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ static void		ft_rot_y(double *x, double *z, double a)
 	*x = (cos(teta) * *x) + (sin(teta) * ztmp);
 }
 
-static t_coor	ft_vector(double z, double x, double y, t_data **data)
+static t_coor	ft_vector(double x, double y, t_data **data)
 {
 	t_coor		point;
+	double		z;
 
+	z = (*data)->map->tab[(int)y][(int)x];
 	point.z = z;
 	z = z * (*data)->depth;
 	ft_rot_z(&x, &y, (*data)->rotz);
@@ -64,26 +66,27 @@ int				wiremap2(t_data **data, t_map *map)
 {
 	double	i;
 	double	j;
+	t_coor	p;
 
-	i = 0;
 	j = 0;
+	p = ft_vector(0, 0, data);
+	i = (p.x * 4) + (p.y * (*data)->frame.s_l);
+	if (p.x > 0 && p.x < (*data)->win_w && p.y > 0 && p.y < (*data)->win_h)
+		(i > 0 ? *(int*)((*data)->frame.img + (int)i) = WHITE : i);
+	i = 0;
 	while ((int)i < map->x && (int)j < map->y)
 	{
-		if ((int)i < map->x - 1 && (int)j < map->y - 1)
-			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
-					ft_vector(map->tab[(int)j + 1][(int)i], i, j + 1, data));
-		if (j < map->y - 1)
-			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
-					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
+		if ((int)j < map->y - 1)
+			put_line(data, ft_vector(i, j, data), ft_vector(i, j + 1, data));
+		if (j < map->y - 1 && i < map->x - 1)
+			put_line(data, ft_vector(i, j, data), ft_vector(i + 1, j, data));
 		i++;
 		if ((int)i == map->x - 1 && (int)j < map->y - 1)
-			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
-					ft_vector(map->tab[(int)j + 1][(int)i], i, j + 1, data));
-		((int)i == map->x - 1 ? j++ : i);
-		((int)i == map->x - 1 ? (i = 0) : i);
-		if ((int)j == map->y - 1)
-			put_line(data, ft_vector(map->tab[(int)j][(int)i], i, j, data),
-					ft_vector(map->tab[(int)j][(int)i + 1], i + 1, j, data));
+			put_line(data, ft_vector(i, j, data), ft_vector(i, j + 1, data));
+		((int)i >= map->x - 1 ? j++ : i);
+		((int)i >= map->x - 1 ? (i = 0) : i);
+		if (i < map->x - 1 && (int)j == map->y - 1)
+			put_line(data, ft_vector(i, j, data), ft_vector(i + 1, j, data));
 	}
 	return (0);
 }

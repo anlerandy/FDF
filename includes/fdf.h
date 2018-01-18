@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:49:31 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 11:44:54 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:25:24 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 # include "get_next_line.h"
 
-# define WIN "WireCraft 0.08"
+# define WIN "WireCraft 0.08.01"
 # define BLUR 0x99000000
-# define BLUE 0x0000ff
-# define WHITE 0xffffff
-# define YELLOW 0xffff00
-# define RED 0xff0000
+# define BLUE 0x000000ff
+# define WHITE 0x00ffffff
+# define YELLOW 0x00ffff00
+# define RED 0x00ff0000
+# define ZMAX 5000
 
 typedef struct	s_coor
 {
@@ -76,5 +77,6 @@ char			*ft_intset(char *tab, int i, int size);
 int				ft_zoom(int key, int x, int y, void *param);
 int				ft_infinrot(void *param);
 void			usage(int err);
+int				ft_close(void);
 
 #endif

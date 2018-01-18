@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 11:56:01 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:29:20 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	ft_input(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->frame.pimg, 0, 0);
 	mlx_loop_hook(data->mlx, ft_infinrot, (void*)data);
 	mlx_hook(data->win, 2, 0, ft_exit, (void *)data);
+	mlx_hook(data->win, 17, 0, ft_close, 0);
 	mlx_mouse_hook(data->win, ft_zoom, (void *)data);
 	mlx_loop(data->mlx);
 }
@@ -77,6 +78,8 @@ void		usage(int err)
 		ft_putstr("File is not valid : ");
 		ft_putendl("must contain a constant size along the lines.\n");
 	}
+	if (err == ZMAX)
+		ft_putendl("\nFile contain a z coordonate too high.\nMax : 5'000.\n");
 	exit(0);
 }
 

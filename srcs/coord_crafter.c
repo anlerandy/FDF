@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 11:50:15 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:19:27 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void		lineatoier(t_map **map, char **tab, int *rd, int j)
 		{
 			(*map)->tab[j][i] = ft_atoi(tab[i]);
 			((*map)->z < ft_atoi(tab[i]) ? ((*map)->z = ft_atoi(tab[i])) : i);
+			(ft_atoi(tab[i]) > ZMAX ? usage(ZMAX) : i);
 			i++;
 		}
 	else
@@ -88,10 +89,10 @@ static void		tablines(t_map **map, t_list **save, int *rd)
 
 	tmp = *save;
 	j = 0;
-	ft_putstr("Lignes lu : ");
+	ft_putstr("Lignes (Y) lu : ");
 	ft_putnbr((*map)->y);
 	ft_putchar('\n');
-	ft_putstr("Colonnes lu : ");
+	ft_putstr("Colonnes (X) lu : ");
 	ft_putnbr((*map)->x);
 	ft_putchar('\n');
 	if (((*map)->tab = ft_memalloc(sizeof(int *) * ((*map)->y))))

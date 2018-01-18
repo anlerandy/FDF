@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:53:12 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/16 09:48:00 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:29:12 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				ft_zoom(int key, int x, int y, void *param)
 	x = 0;
 	y = 0;
 	data = (t_data *)param;
-	if (key == 5)
+	if (key == 5 && data->map->z + 10 * data->zoom < ZMAX)
 		data->zoom *= 1.1;
 	if (key == 4 && (data)->zoom > 1)
 		data->zoom = data->zoom / 1.1;
@@ -69,18 +69,21 @@ int				ft_zoom(int key, int x, int y, void *param)
 	return (0);
 }
 
+int				ft_close(void)
+{
+	ft_putendl("Wirecraft corectly closed.");
+	exit(0);
+	return (0);
+}
+
 int				ft_exit(int key, void *param)
 {
 	t_data *data;
 
 	data = (t_data *)param;
 	if (key == 53)
-	{
-		mlx_destroy_image(data->mlx, data->frame.pimg);
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
-	}
-	if (key == 69 || key == 24)
+		ft_close();
+	if ((key == 69 || key == 24) && data->map->z + 10 * data->zoom < ZMAX)
 		data->zoom *= 2;
 	if ((key == 78 || key == 27) && (data)->zoom > 1)
 		data->zoom = data->zoom / 2;
