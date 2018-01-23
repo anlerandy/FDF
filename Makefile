@@ -6,7 +6,7 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2018/01/23 11:52:18 by alerandy         ###   ########.fr        #
+#    Updated: 2018/01/23 15:34:31 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@$(CC) -Iminilibx_macos -Iincludes -Ilibft/includes -o $@ -c $<
 
 clean :
-	@rm -f $(OBJ_PATH)
+	@rm -rf $(OBJ_PATH)
 	@$(MAKE) -C minilibx_macos/ clean
 	@printf "\033[2A\r\033[K""\033[1;30mLib mlx détruite.\033[0m\n"
 	@$(MAKE) -C libft/ clean
