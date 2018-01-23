@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/23 10:50:37 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/23 11:39:18 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,12 @@ static void	set_data(t_data *data, int ac, char **av)
 	if (ac == 4)
 	{
 		data->win_w = ft_atoi(av[2]) < 100 ? 1100 : ft_atoi(av[2]);
+		ft_atoi(av[2]) > 2555 ? (data->win_w = 2555) : ft_atoi(av[2]);
 		data->win_h = ft_atoi(av[3]) < 100 ? data->win_w : ft_atoi(av[3]);
+		ft_atoi(av[3]) > 1390 ? (data->win_h = 1390) : ft_atoi(av[2]);
+		if (ft_atoi(av[3]) > 1390 || ft_atoi(av[2]) > 2555 ||
+				ft_atoi(av[3]) < 100 || ft_atoi(av[2]) < 100)
+			ft_putendl("Window set to default size due to incorrect size.\n");
 	}
 	else
 	{
@@ -87,7 +92,7 @@ int			main(int ac, char **av)
 	if (!(data = ft_memalloc(sizeof(t_data))))
 		return (-1);
 	set_data(data, ac, av);
-	if (ac > 4 || ac < 2)
+	if (ac > 4 || ac < 2 || ac == 3)
 		usage(1);
 	(data->fd = open(av[1], O_RDONLY)) == -1 ? usage(2) : ft_putstr("Reading ");
 	data->fd != -1 ? ft_putendl(av[1]) : ft_putstr("");
