@@ -6,7 +6,7 @@
 #    By: alerandy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/12 12:43:59 by alerandy          #+#    #+#              #
-#    Updated: 2018/01/16 10:33:24 by alerandy         ###   ########.fr        #
+#    Updated: 2018/01/23 11:52:18 by alerandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,5 +60,10 @@ re : fclean $(NAME)
 
 norm :
 	@norminette srcs/ includes/
+
+norml :
+	@norminette libft/srcs/ libft/includes/
+
+normall : norm norml;
 
 .PHONY : fclean re norm success minilibx libft all
