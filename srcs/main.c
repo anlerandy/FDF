@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/23 11:39:18 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/23 11:48:07 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ int			main(int ac, char **av)
 	if (!(data = ft_memalloc(sizeof(t_data))))
 		return (-1);
 	set_data(data, ac, av);
-	if (ac > 4 || ac < 2 || ac == 3)
-		usage(1);
+	(ac > 4 || ac < 2) ? usage(1) : ac;
+	(ac == 3) ? ft_putendl("Size unchanged. Please set both height & width.\n")
+		: ac;
 	(data->fd = open(av[1], O_RDONLY)) == -1 ? usage(2) : ft_putstr("Reading ");
 	data->fd != -1 ? ft_putendl(av[1]) : ft_putstr("");
 	((coord_crafter(data->fd, &data->map) != 1) ? exit(0) : data->fd);

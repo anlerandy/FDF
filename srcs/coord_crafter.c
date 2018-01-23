@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:20:34 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/18 19:19:27 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/23 11:48:38 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void		tablines(t_map **map, t_list **save, int *rd)
 	ft_putchar('\n');
 	ft_putstr("Colonnes (X) lu : ");
 	ft_putnbr((*map)->x);
-	ft_putchar('\n');
+	ft_putendl("\n");
 	if (((*map)->tab = ft_memalloc(sizeof(int *) * ((*map)->y))))
 	{
 		while (tmp && *rd == 0)
