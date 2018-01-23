@@ -6,7 +6,7 @@
 /*   By: alerandy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 12:07:38 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/22 11:04:01 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/23 10:50:37 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 static void	ft_input(t_data *data)
 {
-	data->frame.img = ft_intset(data->frame.img, BLUR,
-			data->win_w * data->win_h);
-//	wiremap2(&data, data->map);
 	mlx_put_image_to_window(data->mlx, data->win, data->frame.pimg, 0, 0);
 	mlx_loop_hook(data->mlx, ft_infinrot, (void*)data);
 	mlx_hook(data->win, 2, 0, ft_exit, (void *)data);
