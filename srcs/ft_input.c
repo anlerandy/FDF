@@ -6,7 +6,7 @@
 /*   By: alerandy <alerandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:53:12 by alerandy          #+#    #+#             */
-/*   Updated: 2018/01/23 10:51:24 by alerandy         ###   ########.fr       */
+/*   Updated: 2018/01/23 11:18:13 by alerandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int				ft_exit(int key, void *param)
 	key == 124 ? data->posx += 10 * (data->zoom / 4) : key;
 	key == 126 ? data->posy -= 10 * (data->zoom / 4) : key;
 	key == 125 ? data->posy += 10 * (data->zoom / 4) : key;
-	key == 89 ? data->depth += 1 : key;
+	(key == 89 && data->depth < 100) ? data->depth += 1 : key;
 	if (key == 83 && data->depth > -10)
 		data->depth -= 1;
 	ft_rot_input(key, data);
